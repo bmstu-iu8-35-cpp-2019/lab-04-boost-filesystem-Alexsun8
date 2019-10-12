@@ -28,8 +28,18 @@ hunter_add_package(GTest)
 find_package(GTest CONFIG REQUIRED)
 
 # Header-only libraries
-hunter_add_package(Boost)
-find_package(Boost CONFIG REQUIRED)
+#hunter_add_package(Boost)
+#find_package(Boost CONFIG REQUIRED)
+include_directories("../boost_1_71_0")
+set(BOOST_ROOT "../boost_1_71_0")
+set(BOOSTROOT "../boost_1_71_0")
+
+FIND_PACKAGE(Boost REQUIRED)
+
+if(NOT Boost_FOUND)
+    message(FATAL_ERROR "Could not find boost!")
+endif()
+
 
 # TODO: change template word to project name and delete this comment
 add_library(template STATIC

@@ -4,8 +4,9 @@
 #include <cmath>
 #include <iostream>
 
-finance::finance(boost::filesystem::path &p) {
-    _broker = p.parent_path().string();
+finance::finance(const boost::filesystem::path &p) {
+    boost::filesystem::path parent = p.parent_path();
+    _broker = parent.string();
     std::string num = "", filename = p.filename().string();
     for (int i = 8; i < 16; i++)
         num += filename[i];

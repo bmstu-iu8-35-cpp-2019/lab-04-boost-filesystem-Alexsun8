@@ -16,7 +16,7 @@ private:
 public:
     finance() = default;
 
-    explicit finance(boost::filesystem::path &p);
+    explicit finance(const boost::filesystem::path &p);
 
     explicit finance(boost::filesystem::path &&p);
 
