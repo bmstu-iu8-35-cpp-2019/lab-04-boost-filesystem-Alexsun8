@@ -1,0 +1,41 @@
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+set(BOOST_ROOT "/path_to_boost_1_57_0")
+
+find_package(Boost 1.57.0)
+
+if(NOT Boost_FOUND)
+    message(FATAL_ERROR "Could not find boost!")
+endif()
+

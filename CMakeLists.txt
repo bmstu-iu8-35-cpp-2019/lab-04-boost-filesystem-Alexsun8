@@ -27,18 +27,21 @@ string(APPEND CMAKE_CXX_FLAGS " -Wshadow -Wnon-virtual-dtor")
 hunter_add_package(GTest)
 find_package(GTest CONFIG REQUIRED)
 
+hunter_add_package(Boost COMPONENTS system filesystem)
+find_package(Boost CONFIG REQUIRED system filesystem)
+
 # Header-only libraries
 #hunter_add_package(Boost)
 #find_package(Boost CONFIG REQUIRED)
-include_directories("../boost_1_71_0")
-set(BOOST_ROOT "../boost_1_71_0")
-set(BOOSTROOT "../boost_1_71_0")
+#include_directories("../boost_1_71_0")
+#set(BOOST_ROOT "../boost_1_71_0")
+#set(BOOSTROOT "../boost_1_71_0")
 
-FIND_PACKAGE(Boost REQUIRED)
-
-if(NOT Boost_FOUND)
-    message(FATAL_ERROR "Could not find boost!")
-endif()
+#FIND_PACKAGE(Boost REQUIRED )
+#
+#if (NOT Boost_FOUND)
+#    message(FATAL_ERROR "Could not find boost!")
+#endif ()
 
 
 # TODO: change template word to project name and delete this comment
@@ -46,6 +49,7 @@ add_library(template STATIC
         # enum your files and delete this comment
         ${CMAKE_CURRENT_SOURCE_DIR}/sources/source.cpp
         main.cpp include/finance.cpp)
+#        include/finance.cpp)
 add_executable(tests
         # TODO: enum your files and delete this comment
         ${CMAKE_CURRENT_SOURCE_DIR}/tests/test.cpp
@@ -60,8 +64,8 @@ target_include_directories(tests
         )
 # TODO: change template word to project name and delete this comment
 target_link_libraries(tests GTest::main template)
-target_link_libraries(template Boost::boost)
-target_link_libraries(tests Boost::boost template)
+target_link_libraries(template Boost::system Boost::filesystem)
+target_link_libraries(tests Boost::system Boost::filesystem template)
 
 enable_testing()
 add_test(NAME unit_tests COMMAND tests)
