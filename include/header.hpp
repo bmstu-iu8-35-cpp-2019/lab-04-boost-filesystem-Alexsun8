@@ -8,6 +8,7 @@
 #include <cstddef>
 #include <iostream>
 #include <stdexcept>
+#include <vector>
 #include <string>
 
 class finance {
