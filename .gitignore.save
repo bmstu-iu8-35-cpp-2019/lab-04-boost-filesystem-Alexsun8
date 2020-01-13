@@ -31,22 +31,11 @@
 *.out
 *.app
 
+set(BOOST_ROOT "/path_to_boost_1_57_0")
 
-# Project files
-*.sln
-*.vcxproj
-*vcxproj.filters
-*vcxproj.user
-main.cpp
-.vs/
-Debug/
-enc_temp_folder/
+find_package(Boost 1.57.0)
 
-# Cmake files
-_3rdParty/
-CMakeFiles/
-*.cmake
-CMakeCache.txt
-*.dir*
-.idea/
-cmake-build-debug/
+if(NOT Boost_FOUND)
+    message(FATAL_ERROR "Could not find boost!")
+endif()
+
