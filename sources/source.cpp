@@ -3,24 +3,31 @@
 #include <header.hpp>
 
 bool filename_is_okey(boost::filesystem::path &p) {
+  const size_t num_start_place = 8;
+  const size_t num_end_place = 16;
+  const size_t name_size = 29;
+  const size_t date_start = 21;
+
   std::string filename, f1;
   filename = p.filename().string();
-  if (filename.size() != 29) return false;
-  for (size_t i = 0; i < 8; i++) f1 += filename[i];
+  if (filename.size() != name_size) return false;
+  for (size_t i = 0; i < num_start_place; i++) f1 += filename[i];
   if (f1 != "balance_") return false;
   f1.clear();
-  for (size_t i = 8; i < 16; i++) {
+  for (size_t i = num_start_place; i < num_end_place; i++) {
     if (filename[i] < '0' || filename[i] > '9') return false;
   }
   if (filename[16] != '_') return false;
-  for (size_t i = 17; i < 21; i++) {
+  for (size_t i = num_end_place + 1; i < date_start; i++) {
     if (filename[i] < '0' || filename[i] > '9') return false;
   }
   //месяц
-  if (filename[21] > '1' || (filename[21] == '1' && filename[22] > '2'))
+  if (filename[date_start] > '1' ||
+      (filename[date_start] == '1' && filename[date_start + 1] > '2'))
     return false;
   //число
-  if (filename[23] > '3' || (filename[23] == '3' && filename[24] > '1'))
+  if (filename[date_start + 2] > '3' ||
+      (filename[date_start + 3] == '3' && filename[date_start + 4] > '1'))
     return false;
 
   return !(p.extension() != ".txt");

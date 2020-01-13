@@ -8,14 +8,18 @@
 #include <cstddef>
 #include <iostream>
 #include <stdexcept>
-#include <vector>
 #include <string>
+#include <vector>
 
 class finance {
  private:
   std::string _broker = "";
   unsigned int _account = 0;
   unsigned int _date = 0;
+
+  size_t num_start_place = 8;
+  size_t num_end_place = 16;
+  size_t end_place = 25;
 
  public:
   finance() = default;

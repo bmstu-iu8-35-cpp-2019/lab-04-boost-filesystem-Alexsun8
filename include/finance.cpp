@@ -6,11 +6,11 @@ finance::finance(const boost::filesystem::path &p) {
   boost::filesystem::path parent = p.parent_path().filename();
   _broker = parent.string();
   std::string num = "", filename = p.filename().string(), date = "";
-  for (int i = 8; i < 16; i++) num += filename[i];
+  for (size_t i = num_start_place; i < num_end_place; i++) num += filename[i];
   _account = atoi(num.c_str());
   //    num = "";
 
-  for (int i = 17; i < 25; i++) date += filename[i];
+  for (size_t i = num_end_place + 1; i < end_place; i++) date += filename[i];
   _date = atoi(date.c_str());
 
   //    std::cout<<std::endl<<date<<std::endl;
@@ -19,10 +19,10 @@ finance::finance(const boost::filesystem::path &p) {
 finance::finance(boost::filesystem::path &&p) {
   _broker = p.parent_path().filename().string();
   std::string num = "", filename = p.filename().string();
-  for (int i = 8; i < 16; i++) num += filename[i];
+  for (size_t i = num_start_place; i < num_end_place; i++) num += filename[i];
   _account = atoi(num.c_str());
   num = "";
-  for (int i = 17; i < 25; i++) num += filename[i];
+  for (size_t i = num_end_place + 1; i < end_place; i++) num += filename[i];
   _date = atoi(num.c_str());
   //    std::cout<<std::endl<<num<<std::endl;
 }
